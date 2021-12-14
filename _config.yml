@@ -26,14 +26,6 @@ baseurl: "/regulations_cms" # the subpath of your site, e.g. /blog
 url: "https://saruar999.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: saruar999
 
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      categories: engineering
-      layout: post
-
 # Build settings
 plugins:
   - jekyll-feed
