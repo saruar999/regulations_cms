@@ -11304,9 +11304,6 @@ body {
   right: 90%;
   transition: visibility 0.001s, opacity 0.001s linear, right 0.001s linear;
 }
-#submenu > li > a.active{
-  
-}
 .page-wrapper.pinned:not(.sidebar-hovered)
   .sidebar-wrapper
   .sidebar-search
