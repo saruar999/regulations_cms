@@ -11304,6 +11304,22 @@ body {
   right: 90%;
   transition: visibility 0.001s, opacity 0.001s linear, right 0.001s linear;
 }
+
+.search-category {
+  font-size: 18px;
+  font-weight: bold;
+}
+.search-item {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.search-results {
+  display: block;
+  background-color: #cbd3da;
+}
+
 .page-wrapper.pinned:not(.sidebar-hovered)
   .sidebar-wrapper
   .sidebar-search
@@ -11340,6 +11356,10 @@ body {
   ul
   > li
   > a::after,
+.page-wrapper.pinned:not(.sidebar-hovered)
+  .sidebar-wrapper
+  .sidebar-content
+  .search-results,
 .page-wrapper.pinned:not(.sidebar-hovered)
   .sidebar-wrapper
   .sidebar-footer

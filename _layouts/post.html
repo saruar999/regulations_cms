@@ -23,6 +23,7 @@
             <div>
               <div class="input-group">
                 <input
+                  id="search"
                   type="text"
                   class="form-control search-menu"
                   placeholder="گەڕان..."
@@ -33,16 +34,17 @@
                   </span>
                 </div>
               </div>
+              <ul class="search-results"></ul>
             </div>
           </div>
           <div class="sidebar-item sidebar-arrow">
             <i class="fa fa-angle-left fa-2x"></i>
           </div>
           <div class="sidebar-item sidebar-menu">
-            <ul>
+            <ul id="menu">
               {% for category in site.categories %}
               <li class="sidebar-dropdown">
-                <a href="#">
+                <a id="menu" href="#">
                   <span class="menu-text">{{ category | first }}</span>
                 </a>
                 <div class="sidebar-submenu">
@@ -93,25 +95,83 @@
         </div>
       </main>
     </div>
+
     <script src="../../../../js/popper.min.js"></script>
     <script src="../../../../js/main.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
+        const categoryTitle = '{{page.categories}}';
         const pageTitle = '{{page.title}}';
-        const items = $('#submenu').children();
+
+        const mainItems = $('#menu').children();
         let selectedItem;
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].innerText.trim() == pageTitle.trim()) {
-            selectedItem = items[i];
+
+        const searchItems = [];
+        for (let j = 0; j < mainItems.length; j++) {
+          const category = {
+            categoryName: mainItems[j]
+              .getElementsByTagName('a')[0]
+              .getElementsByTagName('span')[0]
+              .innerText.trim(),
+            categoryItems: [],
+          };
+
+          const items = $(mainItems[j]).find('div > ul').children();
+          for (let i = 0; i < items.length; i++) {
+            category.categoryItems.push(items[i].innerText.trim());
+            if (
+              mainItems[j]
+                .getElementsByTagName('a')[0]
+                .getElementsByTagName('span')[0]
+                .innerText.trim() == categoryTitle.trim() &&
+              items[i].innerText.trim() == pageTitle.trim()
+            ) {
+              selectedItem = items[i];
+            }
           }
+          searchItems.push(category);
         }
+
         $(selectedItem).first().addClass('active');
         $(selectedItem).first().prop('disabled', true);
         const menu = $(selectedItem).parent().parent();
         menu.slideDown(200);
         menu.parent().addClass('active');
+
+        $('#search').on('input', function (e) {
+          $('.search-results').empty();
+          const foundSearch = [];
+          const value = $(this).val();
+          let groupedSearch = {};
+          if (value.length > 0) {
+            searchItems.map((category) => {
+              category.categoryItems.map((item, index) => {
+                if (String(item).includes(value)) {
+                  if (groupedSearch[category.categoryName]) {
+                    groupedSearch[category.categoryName].push(item);
+                  } else {
+                    groupedSearch = {
+                      ...groupedSearch,
+                      [category.categoryName]: [item],
+                    };
+                  }
+                }
+              });
+            });
+          }
+
+          Object.keys(groupedSearch).map((category) => {
+            $('.search-results').append(
+              `<ul class="search-category" id="${category}" style="text-align: right">${category}</ul>`,
+            );
+            groupedSearch[category].map((item) => {
+              $(`#${category}`).append(
+                `<li class="search-item"><a>${item}</a></li>`,
+              );
+            });
+          });
+        });
       });
     </script>
-    <script></script>
   </body>
 </html>
