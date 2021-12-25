@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/sidebar-themes.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   </head>
 
@@ -24,9 +25,11 @@
             <div>
               <div class="input-group">
                 <input
+                  id="search"
                   type="text"
                   class="form-control search-menu"
                   placeholder="گەڕان..."
+                  autocomplete="off"
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
@@ -37,24 +40,21 @@
               <ul class="search-results"></ul>
             </div>
           </div>
-
           <div class="sidebar-item sidebar-arrow">
             <i class="fa fa-angle-left fa-2x"></i>
           </div>
           <div class="sidebar-item sidebar-menu">
-            <ul>
+            <ul id="menu">
               {% for category in site.categories %}
               <li class="sidebar-dropdown">
-                <a href="#">
+                <a id="menu" href="#">
                   <span class="menu-text">{{ category | first }}</span>
                 </a>
                 <div class="sidebar-submenu">
                   <ul id="submenu">
                     {% for post in category[1] %}
                     <li>
-                      <a
-                        id="submenu-btn"
-                        href="{{ site.baseurl | append: post.url}}"
+                      <a href="{{ site.baseurl | append: post.url}}"
                         >{{post.title}}</a
                       >
                     </li>
@@ -91,5 +91,68 @@
     </div>
     <script src="js/popper.min.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        const mainItems = $('#menu').children();
+
+        const searchItems = [];
+        for (let j = 0; j < mainItems.length; j++) {
+          const category = {
+            categoryName: mainItems[j]
+              .getElementsByTagName('a')[0]
+              .getElementsByTagName('span')[0]
+              .innerText.trim(),
+            categoryItems: [],
+          };
+
+          const items = $(mainItems[j]).find('div > ul').children();
+          for (let i = 0; i < items.length; i++) {
+            const itemObj = {
+              name: items[i].innerText.trim(),
+              href: items[i].children[0].href,
+            };
+            category.categoryItems.push(itemObj);
+          }
+          searchItems.push(category);
+        }
+
+        $('#search').on('input', function (e) {
+          $('.search-results').empty();
+          const foundSearch = [];
+          const value = $(this).val();
+          let groupedSearch = {};
+          if (value.length > 0) {
+            searchItems.map((category) => {
+              category.categoryItems.map((item, index) => {
+                if (
+                  String(item.name).includes(value) ||
+                  String(category.categoryName).includes(value)
+                ) {
+                  if (groupedSearch[category.categoryName]) {
+                    groupedSearch[category.categoryName].push(item);
+                  } else {
+                    groupedSearch = {
+                      ...groupedSearch,
+                      [category.categoryName]: [item],
+                    };
+                  }
+                }
+              });
+            });
+          }
+
+          Object.keys(groupedSearch).map((category) => {
+            $('.search-results').append(
+              `<ul class="search-category" id="${category}" style="text-align: right">${category}</ul>`,
+            );
+            groupedSearch[category].map((item) => {
+              $(`#${category}`).append(
+                `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
+              );
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>

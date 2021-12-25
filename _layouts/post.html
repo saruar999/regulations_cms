@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="../../../../css/styles.css" />
     <link rel="stylesheet" href="../../../../css/sidebar-themes.css" />
   </head>
 
@@ -27,6 +28,7 @@
                   type="text"
                   class="form-control search-menu"
                   placeholder="گەڕان..."
+                  autocomplete="off"
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
@@ -118,7 +120,11 @@
 
           const items = $(mainItems[j]).find('div > ul').children();
           for (let i = 0; i < items.length; i++) {
-            category.categoryItems.push(items[i].innerText.trim());
+            const itemObj = {
+              name: items[i].innerText.trim(),
+              href: items[i].children[0].href,
+            };
+            category.categoryItems.push(itemObj);
             if (
               mainItems[j]
                 .getElementsByTagName('a')[0]
@@ -131,7 +137,6 @@
           }
           searchItems.push(category);
         }
-
         $(selectedItem).first().addClass('active');
         $(selectedItem).first().prop('disabled', true);
         const menu = $(selectedItem).parent().parent();
@@ -146,7 +151,10 @@
           if (value.length > 0) {
             searchItems.map((category) => {
               category.categoryItems.map((item, index) => {
-                if (String(item).includes(value)) {
+                if (
+                  String(item.name).includes(value) ||
+                  String(category.categoryName).includes(value)
+                ) {
                   if (groupedSearch[category.categoryName]) {
                     groupedSearch[category.categoryName].push(item);
                   } else {
@@ -166,7 +174,7 @@
             );
             groupedSearch[category].map((item) => {
               $(`#${category}`).append(
-                `<li class="search-item"><a>${item}</a></li>`,
+                `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
               );
             });
           });
