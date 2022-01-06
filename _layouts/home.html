@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{page.title}}</title>
+    <title>{{page.title}} </title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -18,11 +18,12 @@
   </head>
 
   <body>
+
     <div class="page-wrapper toggled light-theme">
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <div class="sidebar-item sidebar-search">
-            <div>
+            <div class="searched-result"> 
               <div class="input-group">
                 <input
                   id="search"
@@ -37,7 +38,7 @@
                   </span>
                 </div>
               </div>
-              <ul class="search-results"></ul>
+              <ul class="search"></ul>
             </div>
           </div>
           <div class="sidebar-item sidebar-arrow">
@@ -143,7 +144,7 @@
 
           Object.keys(groupedSearch).map((category) => {
             $('.search-results').append(
-              `<ul class="search-category" id="${category}" style="text-align: right">${category}</ul>`,
+              `<ul class="search-category" id="${category}>${category}</ul>`,
             );
             groupedSearch[category].map((item) => {
               $(`#${category}`).append(
