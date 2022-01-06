@@ -875,9 +875,7 @@ textarea.form-control {
 .search-category{
   margin-right: 10px !important;
 }
-.search-item{
- 
-}
+
 .sidebar-arrow {
   margin: 0;
   position: absolute;
@@ -899,5 +897,17 @@ textarea.form-control {
 
 .titleHome {
   font-family: sarchia;
+ 
 }
-
+#sidebar{
+  background-color: #eee;
+}
+.header{
+  background-color: #303841;
+}
+.content{
+  box-sizing: border-box;
+  background-color: #FAFAFA;
+  height: 90vh;
+  overflow: hidden;
+}
