@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{page.title}} </title>
+    <title>{{page.title}}</title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -18,12 +18,11 @@
   </head>
 
   <body>
-
     <div class="page-wrapper toggled light-theme">
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <div class="sidebar-item sidebar-search">
-            <div class="searched-result"> 
+            <div class="searched-result">
               <div class="input-group">
                 <input
                   id="search"
@@ -49,13 +48,17 @@
               {% for category in site.categories %}
               <li class="sidebar-dropdown">
                 <a id="menu" href="#">
-                  <span class="menu-text">{{ category | first }}</span>
+                  <span style="font-weight: bolder" class="menu-text"
+                    >{{ category | first }}</span
+                  >
                 </a>
                 <div class="sidebar-submenu">
                   <ul id="submenu">
                     {% for post in category[1] %}
                     <li>
-                      <a href="{{ site.baseurl | append: post.url}}"
+                      <a
+                        style="text-align: right; font-size: 16px"
+                        href="{{ site.baseurl | append: post.url}}"
                         >{{post.title}}</a
                       >
                     </li>
@@ -72,12 +75,15 @@
       <main class="page-content">
         <div id="overlay" class="overlay"></div>
         <div class="container-fluid">
-          <div class="row d-flex align-items-center p-3 border-bottom header  ">
+          <div class="row d-flex align-items-center p-3 border-bottom header">
             <div class="col-md-8">
-              <nav aria-label="breadcrumb" class="align-items-center ">
+              <nav aria-label="breadcrumb" class="align-items-center">
                 <a href="index.html" class="breadcrumb-back" title="Back"></a>
                 <h1 class="titleHome text-light">
-                  <a class="text-light" style="text-decoration: none" href="index.html"
+                  <a
+                    class="text-light"
+                    style="text-decoration: none"
+                    href="index.html"
                     >{{page.title}}</a
                   >
                 </h1>
@@ -94,7 +100,11 @@
     <script src="js/main.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
+        const categoryTitle = '{{page.categories}}';
+        const pageTitle = '{{page.title}}';
+
         const mainItems = $('#menu').children();
+        let selectedItem;
 
         const searchItems = [];
         for (let j = 0; j < mainItems.length; j++) {
@@ -113,9 +123,23 @@
               href: items[i].children[0].href,
             };
             category.categoryItems.push(itemObj);
+            if (
+              mainItems[j]
+                .getElementsByTagName('a')[0]
+                .getElementsByTagName('span')[0]
+                .innerText.trim() == categoryTitle.trim() &&
+              items[i].innerText.trim() == pageTitle.trim()
+            ) {
+              selectedItem = items[i];
+            }
           }
           searchItems.push(category);
         }
+        $(selectedItem).first().addClass('active');
+        $(selectedItem).first().prop('disabled', true);
+        const menu = $(selectedItem).parent().parent();
+        menu.slideDown(200);
+        menu.parent().addClass('active');
 
         $('#search').on('input', function (e) {
           $('.search-results').empty();
@@ -144,7 +168,7 @@
 
           Object.keys(groupedSearch).map((category) => {
             $('.search-results').append(
-              `<ul class="search-category" id="${category}>${category}</ul>`,
+              `<ul class="search-category" id="${category}" style="text-align: right">${category}</ul>`,
             );
             groupedSearch[category].map((item) => {
               $(`#${category}`).append(

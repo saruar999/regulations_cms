@@ -53,7 +53,9 @@
                   <ul id="submenu">
                     {% for post in category[1] %}
                     <li>
-                      <a href="{{ site.baseurl | append: post.url}}"
+                      <a
+                        style="text-align: right; font-size: 16px"
+                        href="{{ site.baseurl | append: post.url}}"
                         >{{post.title}}</a
                       >
                     </li>
@@ -70,7 +72,7 @@
       <main class="page-content">
         <div id="overlay" class="overlay"></div>
         <div class="container-fluid">
-          <div class="row d-flex align-items-center p-3 border-bottom header ">
+          <div class="row d-flex align-items-center p-3 border-bottom header">
             <div class="col-md-8">
               <nav aria-label="breadcrumb" class="align-items-center">
                 <a
@@ -79,7 +81,8 @@
                   title="Back"
                 ></a>
                 <h1 class="titleHome">
-                  <a class="text-light"
+                  <a
+                    class="text-light"
                     style="text-decoration: none"
                     href="{{ site.baseurl }}/index.html"
                     >{{site.title}}</a
@@ -88,9 +91,9 @@
               </nav>
             </div>
           </div>
-          <div class="row p-lg-4 content">
+          <div class="row content">
             <section dir="rtl" align="right" class="main-content col-md-11">
-              <h1 class="titleHome">{{page.title}}</h1>
+              <h1 class="titleContent">{{page.title}}</h1>
               {{content}}
             </section>
           </div>

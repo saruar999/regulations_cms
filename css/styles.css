@@ -173,7 +173,6 @@
 .sidebar-wrapper .sidebar-item {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  
 }
 .sidebar-wrapper .sidebar-content {
   max-height: calc(100% -35px);
@@ -869,10 +868,8 @@ textarea.form-control {
   display: block;
   background-color: #f9f9f9;
   border-radius: 4px;
-
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
-.search-category{
+.search-category {
   margin-right: 10px !important;
 }
 
@@ -897,17 +894,32 @@ textarea.form-control {
 
 .titleHome {
   font-family: sarchia;
- 
 }
-#sidebar{
+#sidebar {
   background-color: #eee;
 }
-.header{
+.header {
   background-color: #303841;
 }
-.content{
+.content {
   box-sizing: border-box;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   height: 90vh;
   overflow: hidden;
+}
+.main-content {
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.main-content p {
+  font-size: 24px;
+  padding-top: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.titleContent {
+  margin-bottom: 50px;
 }
