@@ -55,7 +55,9 @@
                   <ul id="submenu">
                     {% for post in category[1] %}
                     <li>
-                      <a href="{{ site.baseurl | append: post.url}}"
+                      <a
+                        class="postTitle"
+                        href="{{ site.baseurl | append: post.url}}"
                         >{{post.title}}</a
                       >
                     </li>
