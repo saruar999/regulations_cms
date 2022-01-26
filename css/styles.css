@@ -923,3 +923,23 @@ textarea.form-control {
 .titleContent {
   margin-bottom: 50px;
 }
+.main-content table,
+tr,
+td,
+th {
+  border: 2px solid #000;
+}
+
+.main-content td,
+th {
+  padding: 5px 10px;
+}
+
+.main-content th {
+  font-size: 24px;
+  background-color: #ececec;
+}
+.postTitle {
+  text-align: right;
+  font-size: 16px;
+}
