@@ -10492,16 +10492,6 @@ body {
   font-size: 1.05rem;
 }
 
-.search-category {
-  font-size: 18px;
-  font-weight: bold;
-}
-.search-item {
-  font-size: 12px;
-  font-weight: normal;
-  padding: 10px;
-}
-
 /*---- border-radius ------*/
 .boder-radius-on .sidebar-header .user-pic {
   border-radius: 12px;

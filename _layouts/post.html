@@ -152,6 +152,10 @@
           const value = $(this).val();
           let groupedSearch = {};
           if (value.length > 0) {
+            if ($('#menu').children().hasClass('active')) {
+              $('#menu').children().find('.sidebar-submenu').slideUp(200);
+              $('#menu').children().removeClass('active');
+            }
             searchItems.map((category) => {
               category.categoryItems.map((item, index) => {
                 if (
@@ -169,16 +173,28 @@
                 }
               });
             });
+          } else {
+            $(selectedItem).first().addClass('active');
+            $(selectedItem).first().prop('disabled', true);
+            const menu = $(selectedItem).parent().parent();
+            menu.slideDown(200);
+            menu.parent().addClass('active');
           }
 
           Object.keys(groupedSearch).map((category) => {
             $('.search-results').append(
-              `<ul class="search-category" id="${category}" style="text-align: right">${category}</ul>`,
+              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`,
             );
-            groupedSearch[category].map((item) => {
-              $(`#${category}`).append(
-                `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
-              );
+            groupedSearch[category].map((item, index) => {
+              if (index % 2 === 0) {
+                $(`#${category}`).append(
+                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
+                );
+              } else {
+                $(`#${category}`).append(
+                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`,
+                );
+              }
             });
           });
         });
