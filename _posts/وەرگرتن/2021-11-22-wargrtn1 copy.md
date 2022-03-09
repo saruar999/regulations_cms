@@ -2,7 +2,7 @@
 title: ' وەرگرتن و پێشکەش کردنی فۆرم'
 date: 2021-11-22 19:44:34 +0300
 dateString: '04/12/2021'
-categories: پرر
+categories: وەرگورتن
 layout: post
 ---
 
