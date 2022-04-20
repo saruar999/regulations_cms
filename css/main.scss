@@ -46,65 +46,67 @@ header {
   }
 }
 
-
-.full-content{
-    display: flex;
-
-
-    main{
-      margin: 19px;
-
-      width: 80%;
-    }
-
-
-.sidebar-wrapper {
-  background-color: #dddddd !important;
-  border: none;
-  width: 20%;
-  height: 100vh;
+.full-content {
   display: flex;
-  flex-direction: column;
 
-  .input-group {
-    position: relative;
-    input {
-      width: 100%;
-      height: 40px;
-      border: none;
-      border-bottom: 1px solid rgb(182, 181, 181);
-      border-left: 1px solid rgb(182, 181, 181);
-      border-radius: 0 0 4px 4px;
-      margin-bottom: 4%;
-      font-size: 18px;
-      text-align: center;
-    }
-    svg {
-      position: absolute;
-      left: 4px;
-      top: 4px;
-      width: 30px;
-    }
+  main {
+    margin: 19px;
+    width: 80%;
+    font-size: 20px;
 
-    &:hover {
+    .col-md-8{
+        margin-bottom: 20px;
+        font-size: 19px;
+        text-align: center;
+    }
+  }
+
+  .sidebar-wrapper {
+    background-color: #dddddd !important;
+    border: none;
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .input-group {
+      position: relative;
+      input {
+        width: 100%;
+        height: 40px;
+        border: none;
+        border-bottom: 1px solid rgb(182, 181, 181);
+        border-left: 1px solid rgb(182, 181, 181);
+        border-radius: 0 0 4px 4px;
+        margin-bottom: 4%;
+        font-size: 18px;
+        text-align: center;
+      }
       svg {
-        color: $primary-color;
-        animation: rotation 2s infinite linear;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 30px;
+      }
+
+      &:hover {
+        svg {
+          color: $primary-color;
+          animation: rotation 2s infinite linear;
+        }
+      }
+    }
+
+    li {
+      margin: 0 16px;
+      li {
+        margin-top: 10px;
+      }
+      #menu {
+        font-size: 26px;
       }
     }
   }
-  
-  li {
-    margin: 0 16px;
-    li {
-      margin-top: 10px;
-    }
-    #menu {
-      font-size: 26px;
-    }
-  }
-}
-
 }
 
 @keyframes rotation {
@@ -114,4 +116,38 @@ header {
   to {
     transform: rotate(359deg);
   }
+}
+
+$breakpoint-phone: 395px;
+@media (max-width: $breakpoint-phone) {
+ header{
+     a{
+         font-size: 18px;
+     }
+    .image {
+        img {
+          display: none;
+        }
+      }
+ }
+ .full-content{
+     display:inline-block;
+     .main{
+         width: 100%;
+     }
+     .sidebar-wrapper{
+         height: 100%;
+         width: 100%;
+
+         .sidebar-wrapper {
+            .input-group {
+              svg {
+                width: 10px;
+              }
+            }
+          }
+         
+     }
+
+ }
 }
