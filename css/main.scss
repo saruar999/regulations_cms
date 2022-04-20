@@ -1,0 +1,117 @@
+---
+---
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: black;
+  font-family: "sanchia";
+}
+@font-face {
+  font-family: "sanchia";
+  src: url("sarchia.ttf");
+}
+
+$primary-color: #ff8c32;
+
+header {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: #ff8c32;
+  color: black;
+  height: 80px;
+  align-items: center;
+  border-bottom: 2px solid #dddddd;
+  box-shadow: inherit rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+  a {
+    color: black;
+    background-color: transparent;
+    background-color: #ff8c32;
+    font-size: 48px;
+  }
+  .image {
+    position: absolute;
+    left: 3%;
+    top: 14%;
+    border-radius: 0 0 12px 12px;
+    img {
+      background-color: transparent;
+      width: 100px;
+    }
+    background-color: transparent;
+  }
+}
+
+
+.full-content{
+    display: flex;
+
+
+    main{
+      margin: 19px;
+
+      width: 80%;
+    }
+
+
+.sidebar-wrapper {
+  background-color: #dddddd !important;
+  border: none;
+  width: 20%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .input-group {
+    position: relative;
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-bottom: 1px solid rgb(182, 181, 181);
+      border-left: 1px solid rgb(182, 181, 181);
+      border-radius: 0 0 4px 4px;
+      margin-bottom: 4%;
+      font-size: 18px;
+      text-align: center;
+    }
+    svg {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 30px;
+    }
+
+    &:hover {
+      svg {
+        color: $primary-color;
+        animation: rotation 2s infinite linear;
+      }
+    }
+  }
+  
+  li {
+    margin: 0 16px;
+    li {
+      margin-top: 10px;
+    }
+    #menu {
+      font-size: 26px;
+    }
+  }
+}
+
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

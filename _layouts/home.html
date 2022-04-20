@@ -5,118 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{page.title}}</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/sidebar-themes.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   </head>
 
-  <body>
-    <div class="page-wrapper toggled light-theme">
-      <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-content">
-          <div class="sidebar-item sidebar-search">
-            <div class="searched-result">
-              <div class="input-group">
-                <input
-                  id="search"
-                  type="text"
-                  class="form-control search-menu"
-                  placeholder="گەڕان..."
-                  autocomplete="off"
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-              <ul class="search-results"></ul>
-            </div>
-          </div>
-          <div class="sidebar-item sidebar-arrow">
-            <i class="fa fa-angle-left fa-2x"></i>
-          </div>
-          <div class="sidebar-item sidebar-menu">
-            <ul id="menu">
-              {% for category in site.categories %}
-              <li class="sidebar-dropdown">
-                <a id="menu" href="#">
-                  <span style="font-weight: bolder" class="menu-text"
-                    >{{ category | first }}</span
-                  >
-                </a>
-                <div class="sidebar-submenu">
-                  <ul id="submenu">
-                    {% for post in category[1] %}
-                    <li>
-                      <a
-                        class="postTitle"
-                        href="{{ site.baseurl | append: post.url}}"
-                        >{{post.title}}</a
-                      >
-                    </li>
+  <header>
+        <a class="mainHeader" style="text-decoration: none" href="index.html"
+          >{{page.title}}</a
+        >
+        <div class="image">
+          <img src="{{site.baseurl}}/images/sue.png" alt="">
+        </div>
+  </header>
 
-                    {% endfor %}
-                  </ul>
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
+  <div class="full-content">
+
+
+    <body>
+      
+      <nav id="sidebar" class="sidebar-wrapper">
+        <div class="searched-result">
+          <div class="input-group">
+            <input
+              id="search"
+              type="text"
+              class="form-control search-menu"
+              placeholder="گەڕان..."
+              autocomplete="off"
+            />
+            <div class="input-group-append">
+                <svg class="svg-icon search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">A magnifying glass icon.</desc><g class="search-path" fill="none" stroke="#848F91"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>          </div>
           </div>
+          <ul class="search-results"></ul>
         </div>
+  
+          <ul id="menu" class="menu-searchs">
+            {% for category in site.categories %}
+            <li class="sidebar-dropdown">
+              <a id="menu" href="#">
+                <span style="font-weight: bolder" class="menu-text"
+                  >{{ category | first }}</span
+                >
+              </a>
+              <div class="sidebar-submenu">
+                <ul id="submenu">
+                  {% for post in category[1] %}
+                  <li>
+                    <a
+                      class="postTitle"
+                      href="{{ site.baseurl | append: post.url}}"
+                      >{{post.title}}</a
+                    >
+                  </li>
+  
+                  {% endfor %}
+                </ul>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
       </nav>
+
       <main class="page-content">
-        <div id="overlay" class="overlay"></div>
-        <div class="container-fluid">
-          <div class="row d-flex align-items-center p-3 border-bottom header">
-            <div class="col-md-8">
-              <nav aria-label="breadcrumb" class="align-items-center">
-                <a href="index.html" class="breadcrumb-back" title="Back"></a>
-                <h1 class="titleHome text-light">
-                  <a
-                    class="text-light"
-                    style="text-decoration: none"
-                    href="index.html"
-                    >{{page.title}}</a
-                  >
-                </h1>
-              </nav>
-            </div>
-          </div>
-          <div class="row p-lg-4 content">
-            <article class="main-content col-md-9 pr-lg-5"></article>
-          </div>
-        </div>
+        
       </main>
-    </div>
+  </div>
+
     <script src="js/popper.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        const categoryTitle = '{{page.categories}}';
-        const pageTitle = '{{page.title}}';
+        const categoryTitle = "{{page.categories}}";
+        const pageTitle = "{{page.title}}";
 
-        const mainItems = $('#menu').children();
+        const mainItems = $("#menu").children();
         let selectedItem;
 
         const searchItems = [];
         for (let j = 0; j < mainItems.length; j++) {
           const category = {
             categoryName: mainItems[j]
-              .getElementsByTagName('a')[0]
-              .getElementsByTagName('span')[0]
+              .getElementsByTagName("a")[0]
+              .getElementsByTagName("span")[0]
               .innerText.trim(),
             categoryItems: [],
           };
 
-          const items = $(mainItems[j]).find('div > ul').children();
+          const items = $(mainItems[j]).find("div > ul").children();
           for (let i = 0; i < items.length; i++) {
             const itemObj = {
               name: items[i].innerText.trim(),
@@ -125,8 +102,8 @@
             category.categoryItems.push(itemObj);
             if (
               mainItems[j]
-                .getElementsByTagName('a')[0]
-                .getElementsByTagName('span')[0]
+                .getElementsByTagName("a")[0]
+                .getElementsByTagName("span")[0]
                 .innerText.trim() == categoryTitle.trim() &&
               items[i].innerText.trim() == pageTitle.trim()
             ) {
@@ -135,21 +112,21 @@
           }
           searchItems.push(category);
         }
-        $(selectedItem).first().addClass('active');
-        $(selectedItem).first().prop('disabled', true);
+        $(selectedItem).first().addClass("active");
+        $(selectedItem).first().prop("disabled", true);
         const menu = $(selectedItem).parent().parent();
         menu.slideDown(200);
-        menu.parent().addClass('active');
+        menu.parent().addClass("active");
 
-        $('#search').on('input', function (e) {
-          $('.search-results').empty();
+        $("#search").on("input", function (e) {
+          $(".search-results").empty();
           const foundSearch = [];
           const value = $(this).val();
           let groupedSearch = {};
           if (value.length > 0) {
-            if ($('#menu').children().hasClass('active')) {
-              $('#menu').children().find('.sidebar-submenu').slideUp(200);
-              $('#menu').children().removeClass('active');
+            if ($("#menu").children().hasClass("active")) {
+              $("#menu").children().find(".sidebar-submenu").slideUp(200);
+              $("#menu").children().removeClass("active");
             }
             searchItems.map((category) => {
               category.categoryItems.map((item, index) => {
@@ -169,25 +146,25 @@
               });
             });
           } else {
-            $(selectedItem).first().addClass('active');
-            $(selectedItem).first().prop('disabled', true);
+            $(selectedItem).first().addClass("active");
+            $(selectedItem).first().prop("disabled", true);
             const menu = $(selectedItem).parent().parent();
             menu.slideDown(200);
-            menu.parent().addClass('active');
+            menu.parent().addClass("active");
           }
 
           Object.keys(groupedSearch).map((category) => {
-            $('.search-results').append(
-              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`,
+            $(".search-results").append(
+              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`
             );
             groupedSearch[category].map((item, index) => {
               if (index % 2 === 0) {
                 $(`#${category}`).append(
-                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
+                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`
                 );
               } else {
                 $(`#${category}`).append(
-                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`,
+                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`
                 );
               }
             });

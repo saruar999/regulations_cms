@@ -17,31 +17,47 @@
   </head>
 
   <body>
-    <div class="page-wrapper toggled light-theme">
+    <header>
+      <a class="mainHeader" style="text-decoration: none" href="index.html"
+        >{{page.title}}</a
+      >
+      <div class="image">
+        <img src="{{site.baseurl}}/images/sue.png" alt="" />
+      </div>
+    </header>
+
+    <div class="full-content">
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
-          <div class="sidebar-item sidebar-search">
-            <div>
-              <div class="input-group">
-                <input
-                  id="search"
-                  type="text"
-                  class="form-control search-menu"
-                  placeholder="گەڕان..."
-                  autocomplete="off"
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </span>
-                </div>
+          <div class="searched-result">
+            <div class="input-group">
+              <input
+                id="search"
+                type="text"
+                class="form-control search-menu"
+                placeholder="گەڕان..."
+                autocomplete="off"
+              />
+              <div class="input-group-append">
+                <svg
+                  class="svg-icon search-icon"
+                  aria-labelledby="title desc"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 19.9 19.7"
+                >
+                  <title id="title">Search Icon</title>
+                  <desc id="desc">A magnifying glass icon.</desc>
+                  <g class="search-path" fill="none" stroke="#848F91">
+                    <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+                    <circle cx="8" cy="8" r="7" />
+                  </g>
+                </svg>
               </div>
-              <ul class="search-results"></ul>
             </div>
+            <ul class="search-results"></ul>
           </div>
-          <div class="sidebar-item sidebar-arrow">
-            <i class="fa fa-angle-left fa-2x"></i>
-          </div>
+
           <div class="sidebar-item sidebar-menu">
             <ul id="menu">
               {% for category in site.categories %}
@@ -69,6 +85,7 @@
           </div>
         </div>
       </nav>
+
       <main class="page-content">
         <div id="overlay" class="overlay"></div>
         <div class="container-fluid">
@@ -105,23 +122,23 @@
     <script src="../../../../js/main.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        const categoryTitle = '{{page.categories}}';
-        const pageTitle = '{{page.title}}';
+        const categoryTitle = "{{page.categories}}";
+        const pageTitle = "{{page.title}}";
 
-        const mainItems = $('#menu').children();
+        const mainItems = $("#menu").children();
         let selectedItem;
 
         const searchItems = [];
         for (let j = 0; j < mainItems.length; j++) {
           const category = {
             categoryName: mainItems[j]
-              .getElementsByTagName('a')[0]
-              .getElementsByTagName('span')[0]
+              .getElementsByTagName("a")[0]
+              .getElementsByTagName("span")[0]
               .innerText.trim(),
             categoryItems: [],
           };
 
-          const items = $(mainItems[j]).find('div > ul').children();
+          const items = $(mainItems[j]).find("div > ul").children();
           for (let i = 0; i < items.length; i++) {
             const itemObj = {
               name: items[i].innerText.trim(),
@@ -130,8 +147,8 @@
             category.categoryItems.push(itemObj);
             if (
               mainItems[j]
-                .getElementsByTagName('a')[0]
-                .getElementsByTagName('span')[0]
+                .getElementsByTagName("a")[0]
+                .getElementsByTagName("span")[0]
                 .innerText.trim() == categoryTitle.trim() &&
               items[i].innerText.trim() == pageTitle.trim()
             ) {
@@ -140,21 +157,21 @@
           }
           searchItems.push(category);
         }
-        $(selectedItem).first().addClass('active');
-        $(selectedItem).first().prop('disabled', true);
+        $(selectedItem).first().addClass("active");
+        $(selectedItem).first().prop("disabled", true);
         const menu = $(selectedItem).parent().parent();
         menu.slideDown(200);
-        menu.parent().addClass('active');
+        menu.parent().addClass("active");
 
-        $('#search').on('input', function (e) {
-          $('.search-results').empty();
+        $("#search").on("input", function (e) {
+          $(".search-results").empty();
           const foundSearch = [];
           const value = $(this).val();
           let groupedSearch = {};
           if (value.length > 0) {
-            if ($('#menu').children().hasClass('active')) {
-              $('#menu').children().find('.sidebar-submenu').slideUp(200);
-              $('#menu').children().removeClass('active');
+            if ($("#menu").children().hasClass("active")) {
+              $("#menu").children().find(".sidebar-submenu").slideUp(200);
+              $("#menu").children().removeClass("active");
             }
             searchItems.map((category) => {
               category.categoryItems.map((item, index) => {
@@ -174,25 +191,25 @@
               });
             });
           } else {
-            $(selectedItem).first().addClass('active');
-            $(selectedItem).first().prop('disabled', true);
+            $(selectedItem).first().addClass("active");
+            $(selectedItem).first().prop("disabled", true);
             const menu = $(selectedItem).parent().parent();
             menu.slideDown(200);
-            menu.parent().addClass('active');
+            menu.parent().addClass("active");
           }
 
           Object.keys(groupedSearch).map((category) => {
-            $('.search-results').append(
-              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`,
+            $(".search-results").append(
+              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`
             );
             groupedSearch[category].map((item, index) => {
               if (index % 2 === 0) {
                 $(`#${category}`).append(
-                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
+                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`
                 );
               } else {
                 $(`#${category}`).append(
-                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`,
+                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`
                 );
               }
             });
