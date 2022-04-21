@@ -8,6 +8,11 @@
   color: black;
   font-family: "sanchia";
 }
+
+
+html{
+    height:100%;
+ }
 @font-face {
   font-family: "sanchia";
   src: url("sarchia.ttf");
@@ -54,6 +59,8 @@ header {
 
 .full-content {
   display: flex;
+  position: absolute;
+  height: 100%;
 
   main {
     margin: 19px;
@@ -113,6 +120,9 @@ header {
     }
 
     li {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
       margin: 0 16px;
       li {
         margin-top: 10px;

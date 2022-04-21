@@ -70,7 +70,28 @@
       </nav>
 
       <main class="page-content">
-        
+        <div id="overlay" class="overlay"></div>
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb" class="align-items-center">
+            <a href="index.html" class="breadcrumb-back" title="Back"></a>
+            <h1 class="titleHome">
+              <a
+                class="text-light"
+                style="text-decoration: none"
+                href="{{ site.baseurl }}/index.html"
+                style="margin-bottom: 20px ; "
+                >{{site.title}}</a
+              >
+            </h1>
+          </nav>
+
+          <div class="row content">
+            <section dir="rtl" align="right" class="main-content col-md-11" >
+              {{content}}
+            </section>
+          </div>
+        </div>
+      </main>
       </main>
     </div>
 
