@@ -3,18 +3,16 @@ backend:
   branch: master
 
 collections:
-  - name: 'blog' # Used in routes, e.g., /admin/collections/blog
-    label: 'Blog' # Used in the UI
-    folder: '_posts/وەرگرتن' # The path to the folder where the documents are stored
+  - name: 'quality_assurance' # Used in routes, e.g., /admin/collections/blog
+    label: 'Quality Assurance' # Used in the UI
+    folder: '_posts/quality-assurance' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'blog' }
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'categories', name: 'categories', widget: 'string' }
+      - { label: 'tag', name: 'tag', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Featured Image', name: 'thumbnail', widget: 'image' , required: false}
-      - { label: 'Rating (scale of 1-5)', name: 'rating', widget: 'number' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
 media_folder: images/uploads
