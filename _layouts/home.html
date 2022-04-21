@@ -174,12 +174,12 @@
             menu.slideDown(200);
             menu.parent().addClass("active");
           }
-          Object.keys(groupedSearch).map((category) => {
+          Object.keys(groupedSearch).map((category,index) => {
             $(".search-results").append(
-              `<ul class="search-category" id="${category.trim()}"><p class="search-category-text">${category}</p></ul>`
+              `<ul class="search-category" id="${index}"><p class="search-category-text">${category}</p></ul>`
             );
-            groupedSearch[category].map((item, index) => {
-                $(`#${category.trim()}`).append(
+            groupedSearch[category].map((item) => {
+                $(`#${index}`).append(
                   `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`
                 );
             
