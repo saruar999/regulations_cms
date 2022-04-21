@@ -142,7 +142,7 @@ header {
     li {
       display: flex;
       flex-direction: column;
-      height: auto;
+      height: fit-content;
       margin: 0 16px;
       li {
         margin-top: 10px;
