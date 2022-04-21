@@ -9,8 +9,15 @@
   font-family: 'sanchia';
 }
 
+.hidden {
+  display: none;
+}
+.search-category {
+  font-size: 26px;
+}
+
 .search-item {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: normal;
   padding: 10px;
 }

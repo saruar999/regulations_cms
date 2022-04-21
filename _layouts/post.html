@@ -169,6 +169,7 @@
           const value = $(this).val();
           let groupedSearch = {};
           if (value.length > 0) {
+            $('#menu').addClass('hidden');
             if ($('#menu').children().hasClass('active')) {
               $('#menu').children().find('.sidebar-submenu').slideUp(200);
               $('#menu').children().removeClass('active');
@@ -191,27 +192,21 @@
               });
             });
           } else {
+            $('#menu').removeClass('hidden');
             $(selectedItem).first().addClass('active');
             $(selectedItem).first().prop('disabled', true);
             const menu = $(selectedItem).parent().parent();
             menu.slideDown(200);
             menu.parent().addClass('active');
           }
-
-          Object.keys(groupedSearch).map((category) => {
+          Object.keys(groupedSearch).map((category, index) => {
             $('.search-results').append(
-              `<ul class="search-category" id="${category}"><p class="search-category-text">${category}</p></ul>`,
+              `<ul class="search-category" id="${index}"><p class="search-category-text">${category}</p></ul>`,
             );
-            groupedSearch[category].map((item, index) => {
-              if (index % 2 === 0) {
-                $(`#${category}`).append(
-                  `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
-                );
-              } else {
-                $(`#${category}`).append(
-                  `<li class="search-item-light"><a href="${item.href}">${item.name}</a></li>`,
-                );
-              }
+            groupedSearch[category].map((item) => {
+              $(`#${index}`).append(
+                `<li class="search-item"><a href="${item.href}">${item.name}</a></li>`,
+              );
             });
           });
         });

@@ -146,6 +146,7 @@
           const value = $(this).val();
           let groupedSearch = {};
           if (value.length > 0) {
+            $("#menu").addClass('hidden')
             if ($("#menu").children().hasClass("active")) {
               $("#menu").children().find(".sidebar-submenu").slideUp(200);
               $("#menu").children().removeClass("active");
@@ -168,6 +169,7 @@
               });
             });
           } else {
+            $("#menu").removeClass('hidden')
             $(selectedItem).first().addClass("active");
             $(selectedItem).first().prop("disabled", true);
             const menu = $(selectedItem).parent().parent();
