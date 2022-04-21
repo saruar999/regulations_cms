@@ -36,6 +36,14 @@ $primary-color: #ff8c32;
   display: none;
 }
 
+.postTitle{
+  a{
+    &:hover{
+      color: #00000077;
+    }
+  }
+}
+
 header {
   width: 100%;
   display: flex;
@@ -100,7 +108,9 @@ header {
     height: auto;
     display: flex;
     flex-direction: column;
-
+      .sidebar-submenu{
+        color: red;
+      }
     .input-group {
       position: relative;
       input {
@@ -132,7 +142,7 @@ header {
     li {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: auto;
       margin: 0 16px;
       li {
         margin-top: 10px;
