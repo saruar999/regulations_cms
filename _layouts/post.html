@@ -11,11 +11,10 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/sidebar-themes.css" />
+    <link rel="stylesheet" href='{{"css/main.css" | relative_url}}' />
+    <link rel="stylesheet" href='{{"css/styles.css" | relative_url}}' />
+    <link rel="stylesheet" href='{{"css/sidebar-themes.css" | relative_url}}' />
   </head>
-
   <body>
     <header>
       <a
@@ -62,19 +61,21 @@
           </div>
 
           <div class="sidebar-item sidebar-menu">
-            <ul id="menu">
+            <ul id="menu" class="menu-searchs">
               {% for category in site.categories %}
               <li class="sidebar-dropdown">
                 <a id="menu" href="#">
-                  <span class="menu-text">{{ category | first }}</span>
+                  <span style="font-weight: bolder" class="menu-text"
+                    >{{ category | first }}</span
+                  >
                 </a>
                 <div class="sidebar-submenu">
                   <ul id="submenu">
                     {% for post in category[1] %}
                     <li>
                       <a
-                        style="text-align: right; font-size: 16px"
-                        href="{{ site.baseurl | append: post.url}}"
+                        class="postTitle"
+                        href="{{ site.baseurl | append: post.url  }}"
                         >{{post.title}}</a
                       >
                     </li>
@@ -117,8 +118,8 @@
       </main>
     </div>
 
-    <script src="js/popper.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src='{{"js/popper.min.js" | relative_url}}'></script>
+    <script src='{{"js/main.js" | relative_url}}'></script>
     <script type="text/javascript">
       $(document).ready(function () {
         const categoryTitle = '{{page.categories}}';

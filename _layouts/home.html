@@ -43,20 +43,20 @@
         </div>
   
           <ul id="menu" class="menu-searchs">
-            {% for tag in site.tags %}
+            {% for category in site.categories %}
             <li class="sidebar-dropdown">
               <a id="menu" href="#">
                 <span style="font-weight: bolder" class="menu-text"
-                  >{{ tag[0] }}</span
+                  >{{ category | first }}</span
                 >
               </a>
               <div class="sidebar-submenu">
                 <ul id="submenu">
-                  {% for post in tag[1] %}
+                  {% for post in category[1] %}
                   <li>
                     <a
                       class="postTitle"
-                      href="{{ site.baseurl | append: post.url}}"
+                      href="{{ site.baseurl | append: post.url  }}"
                       >{{post.title}}</a
                     >
                   </li>
