@@ -105,7 +105,7 @@ header {
     background-color: #dddddd !important;
     border: none;
     width: 20%;
-    height: auto;
+    height: fit-content;
     display: flex;
     flex-direction: column;
       .sidebar-submenu{
@@ -142,7 +142,7 @@ header {
     li {
       display: flex;
       flex-direction: column;
-      height: fit-content;
+      height: auto;
       margin: 0 16px;
       li {
         margin-top: 10px;
