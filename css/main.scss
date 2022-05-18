@@ -104,7 +104,7 @@ header {
     background-color: #dddddd !important;
     border: none;
     width: 20%;
-    height: fit-content;
+    min-height: fit-content;
     display: flex;
     flex-direction: column;
       .sidebar-submenu{
