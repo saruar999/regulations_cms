@@ -29,6 +29,8 @@
     </header>
 
     <div class="full-content">
+      <button id="burger" class="BurgerMenu">لیست بکەوە</button>
+      <button id="burgerHide" class="BurgerMenu">لیست دابخە</button>
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <div class="searched-result">
@@ -121,6 +123,22 @@
     <script src='{{"js/main.js" | relative_url}}'></script>
     <script type="text/javascript">
       $(document).ready(function () {
+        let burgerButton = document.getElementById('burger');
+        let buttonpressed = burgerButton.addEventListener('click',showList);
+        let burgerClose = document.getElementById('burgerHide')
+        $('#burgerHide').hide();
+
+        burgerClose.addEventListener('click',()=>{
+          $("#sidebar").delay(1000).hide()
+          $('#burgerHide').hide()
+          $('#burger').show()
+        })
+
+        function showList(){
+            $("#sidebar").delay(1000).show()
+            $('#burger').hide()
+            $('#burgerHide').show()
+        }
         const categoryTitle = '{{page.categories}}';
         const pageTitle = '{{page.title}}';
 

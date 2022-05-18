@@ -9,6 +9,8 @@
   font-family: 'sanchia';
 }
 
+
+
 .hidden {
   display: none;
 }
@@ -36,6 +38,13 @@ $primary-color: #ff8c32;
   display: none;
 }
 
+.show{
+  display: block ;
+}
+
+.hide{
+  display: none !important;
+}
 .postTitle{
   a{
     &:hover{
@@ -78,6 +87,10 @@ header {
 .full-content {
   display: flex;
   position: absolute;
+  .BurgerMenu{
+    display: none;
+  }
+
 
   main {
     margin: 19px;
@@ -107,6 +120,7 @@ header {
     min-height: fit-content;
     display: flex;
     flex-direction: column;
+  
       .sidebar-submenu{
         color: red;
       }
@@ -176,13 +190,20 @@ $breakpoint-phone: 395px;
   }
   .full-content {
     display: inline-block;
+    
+    .BurgerMenu{
+      display: block;
+      height: 35px;
+      width: 100%;
+      background-color: #a5a5a5;
+    }
     .main {
       width: 100%;
     }
     .sidebar-wrapper {
       height: 100%;
       width: 100%;
-
+      display: none;
       .sidebar-wrapper {
         .input-group {
           svg {
