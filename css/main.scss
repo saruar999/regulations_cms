@@ -178,7 +178,18 @@ header {
   }
 }
 
-$breakpoint-phone: 395px;
+$breakpoint-phone: 450px;
+
+@media (min-width: $breakpoint-phone) {
+  .full-content {
+    display: inline-block;
+
+    .sidebar-wrapper {
+        display: block;
+    }
+  }
+}
+
 @media (max-width: $breakpoint-phone) {
   header {
     a {
@@ -192,7 +203,6 @@ $breakpoint-phone: 395px;
   }
   .full-content {
     display: inline-block;
-    
     .BurgerMenu{
       display: block;
       height: 35px;
